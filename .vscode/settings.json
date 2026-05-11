@@ -1,0 +1,8 @@
+{
+    "git.ignoreLimitWarning": true,
+    "java.project.sourcePaths": ["open/src"],
+    "java.project.outputPath": "open/bin",
+    "java.project.referencedLibraries": [
+        "open/lib/**/*.jar"
+    ]
+}

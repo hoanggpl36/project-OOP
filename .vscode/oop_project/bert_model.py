@@ -32,7 +32,8 @@ def predict(text):
     context_keywords = [
         "bão", "lũ", "ngập", "cứu", "hỗ trợ", "thuốc", "y tế", "thực phẩm", 
         "sạt lở", "thiệt hại", "quyên góp", "ủng hộ", "đồ ăn", "nước uống", 
-        "áo phao", "cô lập", "mưa lớn", "chìm", "mất tích", "cứu trợ"
+        "áo phao", "cô lập", "mưa lớn", "chìm", "mất tích", "cứu trợ",
+        "help", "emergency", "sos"
     ]
     
     # Nếu không có từ khóa liên quan đến bão lũ, cho về Trung lập
@@ -42,15 +43,22 @@ def predict(text):
             "need_help": 0
         }
 
-    # 🚨 BƯỚC 1: check từ khóa nguy hiểm (THÊM ĐOẠN NÀY)
-    if any(word in text_lower for word in ["cứu", "khẩn", "help", "emergency"]):
+    # Kiểm tra các từ phủ định hoặc biểu hiện an toàn
+    has_negation = any(word in text_lower for word in [
+        "không cần", "không bị", "chưa cần", "không sao", "không gặp", 
+        "bình thường", "không thiệt hại", "không phải", "đã được", 
+        "đã cứu", "hết ngập", "hết lũ", "rút rồi", "an toàn"
+    ])
+
+    # 🚨 BƯỚC 1: check từ khóa nguy hiểm
+    if any(word in text_lower for word in ["cứu", "khẩn", "help", "emergency"]) and not has_negation:
         return {
             "sentiment": "NEGATIVE",
             "need_help": 1
         }
         
     # 🔥 BƯỚC 2: check từ khóa tích cực
-    if any(word in text_lower for word in ["vui", "cảm ơn", "tốt", "tuyệt", "hỗ trợ", "thuốc", "y tế", "cứu trợ"]):
+    if any(word in text_lower for word in ["vui", "cảm ơn", "tốt", "tuyệt", "hỗ trợ", "thuốc", "y tế", "cứu trợ"]) or has_negation:
         return {
             "sentiment": "POSITIVE",
             "need_help": 0

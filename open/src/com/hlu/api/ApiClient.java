@@ -8,18 +8,21 @@ public class ApiClient {
 
     public static String analyze(String text) {
         try {
-            URL url = new URL("http://127.0.0.1:8000/predict");
+            // Sửa lỗi cảnh báo deprecation bằng cách dùng URI
+            URL url = java.net.URI.create("http://127.0.0.1:8000/predict").toURL();
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
 
-            // JSON gửi đi
-            String jsonInput = "{\"text\":\"" + text + "\"}";
+            // Dùng Gson để tạo JSON an toàn (tránh lỗi nếu text có dấu ngoặc kép)
+            com.google.gson.JsonObject json = new com.google.gson.JsonObject();
+            json.addProperty("text", text);
+            String jsonInput = json.toString();
 
             OutputStream os = conn.getOutputStream();
-            os.write(jsonInput.getBytes());
+            os.write(jsonInput.getBytes(java.nio.charset.StandardCharsets.UTF_8));
             os.flush();
             os.close();
 

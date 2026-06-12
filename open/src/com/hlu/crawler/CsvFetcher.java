@@ -68,4 +68,24 @@ public class CsvFetcher implements IDataFetcher {
 
         return list;
     }
+
+    public void savePostToCsv(SocialPost post, boolean needHelp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = sdf.format(post.getTimestamp());
+        String contentEscaped = post.getContent().replace("\"", "\"\"");
+        String cleanText = com.hlu.preprocessing.DataPreprocessor.cleanText(post.getContent());
+        String sentiment = post.getSentiment();
+        String needHelpStr = needHelp ? "YES" : "NO";
+
+        String csvLine = String.format("%s,\"%s\",\"%s\",%s,%s", dateStr, contentEscaped, cleanText, sentiment, needHelpStr);
+
+        try (java.io.FileWriter fw = new java.io.FileWriter(csvFilePath, true);
+             java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+             java.io.PrintWriter out = new java.io.PrintWriter(bw)) {
+            out.println();
+            out.print(csvLine);
+        } catch (Exception e) {
+            System.out.println("Không ghi được vào file CSV: " + e.getMessage());
+        }
+    }
 }

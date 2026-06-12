@@ -5,3 +5,12 @@ date,content,clean,sentiment,need_help
 2024-09-08,Trong nhà thiếu nước sạch và thức ăn,trong nhà thiếu nước sạch và thức ăn,NEGATIVE,NO
 2024-09-09,Mọi người đang hỗ trợ giúp đỡ lẫn nhau,mọi người đang hỗ trợ giúp đỡ lẫn nhau,NEGATIVE,NO
 2024-09-10,Người dân cần hỗ trợ y tế khẩn cấp,người dân cần hỗ trợ y tế khẩn cấp,NEGATIVE,YES
+
+2026-06-11,"Mọi người ơi nhà tôi bị tốc mái ngập sâu quá cần cứu trợ gấp","mọi người ơi nhà tôi bị tốc mái ngập sâu quá cần cứu trợ gấp",Tiêu cực,YES
+2026-06-11,"Cảm ơn tất cả mọi người đã giúp tôi","cảm ơn tất cả mọi người đã giúp tôi",Trung lập,NO
+2026-06-11,"cứu tôi","cứu tôi",Tiêu cực,YES
+2026-06-11,"không phải cứu tôi đâu","không phải cứu tôi đâu",Tiêu cực,YES
+2026-06-11,"cứu đi","cứu đi",Tiêu cực,YES
+2026-06-11,"không phải cứu tôi","không phải cứu tôi",Tiêu cực,YES
+2026-06-11,"không phải cứu tôi đâu","không phải cứu tôi đâu",Tiêu cực,YES
+2026-06-12,"help me","help me",Trung lập,NO

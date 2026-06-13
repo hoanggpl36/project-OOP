@@ -14,3 +14,5 @@ date,content,clean,sentiment,need_help
 2026-06-11,"không phải cứu tôi","không phải cứu tôi",Tiêu cực,YES
 2026-06-11,"không phải cứu tôi đâu","không phải cứu tôi đâu",Tiêu cực,YES
 2026-06-12,"help me","help me",Trung lập,NO
+2026-06-13,"tôi cần thêm thuốc men để cứu con","tôi cần thêm thuốc men để cứu con",Lỗi phân tích,NO
+2026-06-13,"tôi đẫ nhận được thuốc  rồi cảm ơn","tôi đẫ nhận được thuốc rồi cảm ơn",Tích cực,NO

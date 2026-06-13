@@ -3,11 +3,8 @@ package com.hlu.ui;
 import com.hlu.model.SocialPost;
 import com.hlu.crawler.IDataFetcher;
 import com.hlu.crawler.CsvFetcher;
-import com.hlu.api.ApiClient;
-import com.hlu.preprocessing.DataPreprocessor;
 import com.hlu.preprocessing.PreprocessStrategy;
 import com.hlu.preprocessing.AdvancedPreprocess;
-import com.hlu.analyzer.AnalysisTask;
 import com.hlu.analyzer.DamageClassificationTask;
 import com.hlu.analyzer.ReliefGoodsSentimentTask;
 import com.hlu.analyzer.SentimentOverTimeTask;
@@ -40,7 +37,8 @@ public class DashboardController {
         return processNewPost(text, new AdvancedPreprocess(), new PythonApiAnalyzer());
     }
 
-    public SocialPost processNewPost(String text, PreprocessStrategy preprocessor, ISentimentAnalyzer analyzer) throws Exception {
+    public SocialPost processNewPost(String text, PreprocessStrategy preprocessor, ISentimentAnalyzer analyzer)
+            throws Exception {
         String cleanText = preprocessor.preprocess(text);
         SocialPost newPost = new SocialPost(
                 "U" + System.currentTimeMillis(),
@@ -49,8 +47,7 @@ public class DashboardController {
                 new Date(),
                 "Chưa phân tích",
                 "Chưa phân loại",
-                "Chưa phân loại"
-        );
+                "Chưa phân loại");
 
         String res = analyzer.analyze(cleanText);
         boolean isError = "ERROR".equals(res);

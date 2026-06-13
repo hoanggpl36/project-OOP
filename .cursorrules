@@ -1,0 +1,606 @@
+let; 16px all on mobile
+
+### Whitespace Philosophy
+
+Captist prioritizes breathing room and content hierarchy through generous negative space. Large sections (48px–80px) separate major content blocks, allowing the viewer's eye to rest and focus. Internal component spacing (12px–24px) maintains tightness without crowding. The dark background acts as a breathing space itself; white/light content floats atop, creating natural visual separation. Avoid stacking content or reducing spacing below the scale values—whitespace is a design feature, not wasted real estate.
+
+### Border Radius Scale
+
+- **0px:** Icon buttons, strict UI controls
+- **4px:** Small utility buttons, minor badges
+- **6px:** Buttons, secondary containers, form inputs
+- **8px:** Badge containers, small cards
+- **24px:** Standard card radius, primary containers, featured sections
+- **999px:** Fully rounded buttons, large CTAs, pill-style elements (use `border-radius: 999px` or `50%`)
+- **50%:** Perfect circles (avatars, small icons)
+
+## 6. Depth & Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| **Flat (0)** | No shadow, no border | Text, icons, simple UI elements |
+| **Raised (1)** | `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px` | Standard cards, basic containers |
+| **Floating (2)** | `rgba(10, 132, 255, 0.1) 0px 0px 60px 0px, rgba(0, 0, 0, 0.5) 0px 20px 60px -15px` | Featured cards, premium containers, modals |
+| **Focus (3)** | `rgba(10, 132, 255, 0.15) 0px 0px 20px 0px` | Button focus state, interactive hover |
+| **Overlay (4)** | `rgba(0, 0, 0, 0.3) 0px 8px 32px 0px` | Dropdowns, popovers, floating actions |
+
+**Shadow Philosophy:**
+
+Depth is conveyed primarily through color opacity and the blue accent glow rather than aggressive shadows. The approach prioritizes subtlety and sophistication—shadows are soft, offset downward slightly, and blurred generously. The primary blue (`#0A84FF`) ambient glow creates a sense of digital luminosity and interactivity without visual heaviness. Layered shadows (combining multiple offsets and blur radii) create dimensionality without appearing harsh. On dark backgrounds, shadows are rendered with extreme softness (blur 32px+, opacity 0.1–0.5) to avoid dominating the visual field. Interactive elements receive blue glow emphasis to signal availability and state change.
+
+## 7. Do's and Don'ts
+
+### Do
+
+- **Use Inter for all body copy and primary headings.** It ensures clarity and modern aesthetic consistency.
+- **Leverage the blue glow (`#0A84FF` with `rgba(10, 132, 255, 0.15)` shadow).** This is the design system's signature and signals interactivity.
+- **Maintain generous spacing; never collapse whitespace below the 4px base unit multiplied by context.** Whitespace improves legibility and refinement.
+- **Apply the glass morphism surface treatment (`rgba(255, 255, 255, 0.08)` background with `rgba(255, 255, 255, 0.1)` border).** It unifies card and container aesthetics.
+- **Use fully rounded buttons (999px radius) exclusively for primary CTAs.** Reserve 6px–8px radius for secondary and tertiary controls.
+- **Maintain high contrast for accessibility:** Primary text `#FFFFFF` on dark backgrounds, blue accents `#0A84FF` on white/light.
+- **Scale typography through weight progression (400 → 600 → 700) rather than excessive font size increases.** This preserves visual hierarchy and refinement.
+- **Ensure all interactive elements have clear hover states** (color shift, background change, shadow enhancement).
+- **Use semantic colors (green `#28C840`, amber `#FF9F0A`, red `#FF453A`) sparingly and only for status indication.**
+- **Apply consistent padding to all containers:** 24px for cards, 40px for major sections, 12px–16px for form elements.
+
+### Don't
+
+- **Don't use Arial for body copy or headings.** Arial is reserved for UI labels, buttons, and system text only.
+- **Don't create shadows with high opacity or hard blur.** Shadows must be soft, subtle, and rarely exceed `rgba(0, 0, 0, 0.5)`.
+- **Don't collapse button radius to 0px unless mimicking browser defaults.** Captist's identity relies on rounded, approachable corners.
+- **Don't use the primary blue (`#0A84FF`) for non-interactive elements.** Reserve it for buttons, links, and CTAs to maintain focus and hierarchy.
+- **Don't mix more than two accent colors in a single layout section.** Color discipline prevents visual chaos and improves user focus.
+- **Don't reduce spacing below the established scale; this includes gutters, padding, and gaps.** Cramped layouts contradict the design system's breathing-room philosophy.
+- **Don't apply blur effects or transparency excessively.** Use them strategically (glass morphism on cards, semi-transparent overlays on interaction).
+- **Don't change font weight mid-component without semantic reason.** Consistency in weight reduces cognitive load.
+- **Don't forget accessibility:** ensure all text meets WCAG AA contrast ratios (4.5:1 minimum for body text, 3:1 for graphics).
+- **Don't use placeholder or disabled state colors for permanent UI elements.** Semantic colors must convey transient states only.
+
+## 8. Responsive Behavior
+
+### Breakpoints
+
+| Breakpoint Name | Width | Key Changes |
+|-----------------|-------|-------------|
+| **Mobile** | 320px–479px | Single-column layout, 16px padding, 12px gaps, font reduction (body 16px), full-width cards |
+| **Tablet** | 480px–767px | Single-column or 2-column grid, 24px padding, 16px gaps, body 18px, card width 100% |
+| **Desktop** | 768px–1199px | 2–3 column grid, 32px padding, 24px gaps, body 20px (full), max-width 100% |
+| **Large Desktop** | 1200px+ | 3-column grid, 40px padding, 32px gaps, body 20px, max-width 1200px container |
+
+**Responsive Type Scaling:**
+- **H1 (Display):** 80px (desktop) → 48px (tablet) → 36px (mobile)
+- **H2:** 48px (desktop) → 32px (tablet) → 28px (mobile)
+- **H3:** 16px (desktop) → 16px (tablet) → 14px (mobile)
+- **Body:** 20px (desktop) → 18px (tablet) → 16px (mobile)
+- **Body Small:** 16px (desktop) → 15px (tablet) → 14px (mobile)
+
+### Touch Targets
+
+- **Minimum Height:** 44px for all interactive elements (buttons, links, form controls)
+- **Minimum Width:** 44px for buttons and touch targets
+- **Spacing Between Targets:** 8px minimum to prevent accidental activation
+- **Icon Buttons:** 40px × 40px minimum
+- **Text Links:** 44px tall with 8px vertical padding for touch comfort
+
+### Collapsing Strategy
+
+**Desktop to Tablet (1200px → 768px):**
+- 3-column grid collapses to 2-column
+- Padding reduces from 40px to 32px; gaps from 32px to 24px
+- Hero section height remains full viewport; reduce bottom padding
+- Navigation remains horizontal; font size holds at 16px
+
+**Tablet to Mobile (768px → 320px):**
+- 2-column grid collapses to single column; 100% width
+- Padding reduces from 32px to 16px; gaps from 24px to 12px
+- Hero title (H1) reduces from 48px → 36px; body from 18px → 16px
+- Navigation converts to hamburger menu if space constrained
+- Cards stack vertically; width 100% with 16px margin
+- Large buttons reduce padding from 12px 24px → 10px 18px
+- Feature cards stack; icon shifts from left to top if space needed
+
+**Header Behavior:**
+- Desktop: Full navigation visible, 16px horizontal gaps, language selector visible
+- Tablet: Navigation remains visible; font size holds; condense if needed
+- Mobile: Hamburger menu activation around 480px; header height 56px; navigation offscreen or below fold
+
+**Modal and Overlay Behavior:**
+- Desktop: Max width 600px, 40px margin on sides, position center
+- Tablet: Max width 90% of viewport, 24px margin
+- Mobile: 100% width with 12px margin, position bottom-sheet or full-screen
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+
+- **Primary CTA Background:** Electric Blue (`#0A84FF`)
+- **Primary CTA Text:** Pure White (`#FFFFFF`)
+- **Primary CTA Hover:** Deep Blue (`#0077ED`)
+- **Secondary Button Background:** Transparent with border `rgba(255, 255, 255, 0.2)`
+- **Secondary Button Text:** White (`#FFFFFF`)
+- **Card Background:** Glass White (`rgba(255, 255, 255, 0.08)`)
+- **Card Border:** Glass Border (`rgba(255, 255, 255, 0.1)`)
+- **Body Text:** Pure White (`#FFFFFF`)
+- **Secondary Text:** Muted (`rgba(235, 235, 245, 0.6)`)
+- **Link Text:** Light Lavender (`#64D2FF`) on hover / `#FFFFFF` default
+- **Success State:** Green (`#28C840`)
+- **Warning State:** Amber (`#FF9F0A`)
+- **Error State:** Red (`#FF453A`)
+- **Icon Accent:** Electric Blue (`#0A84FF`)
+- **Heading Text:** Pure White (`#FFFFFF`)
+- **Shadow (Subtle):** `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`
+- **Shadow (Elevated):** `rgba(10, 132, 255, 0.1) 0px 0px 60px 0px, rgba(0, 0, 0, 0.5) 0px 20px 60px -15px`
+- **Blue Glow (Interactive):** `rgba(10, 132, 255, 0.15) 0px 0px 20px 0px`
+
+### Iteration Guide
+
+1. **Typography is Inter-first.** Use 80px, 48px, 20px hierarchy; Arial only for UI labels and buttons (12px–13.33px).
+
+2. **Primary CTAs are fully rounded (999px) with electric blue (`#0A84FF`) background, white text, and blue glow shadow (`rgba(10, 132, 255, 0.15) 0px 0px 20px 0px`).** Padding 12px 24px, height 48px.
+
+3. **Cards are glass morphism:** `rgba(255, 255, 255, 0.08)` background, `rgba(255, 255, 255, 0.1)` border, 24px padding, 24px border-radius, soft shadow `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`.
+
+4. **Spacing follows 4px base unit scale.** Minimum vertical gaps: 20px between elements, 32px between sections, 48px between major blocks. Padding: 24px for cards, 40px for containers.
+
+5. **Hover states shift blue lighter (`#64D2FF`) and intensify glow.** Secondary buttons gain slight background opacity increase. Links underline.
+
+6. **Dark backgrounds (#141416, #000000) are paired with high-contrast white text (#FFFFFF).** Use opacity reductions (0.6–0.8) for secondary/disabled states.
+
+7. **Form inputs have `rgba(255, 255, 255, 0.05)` background, `rgba(255, 255, 255, 0.1)` border, focus state adds blue glow and `rgba(255, 255, 255, 0.08)` background.** Height 44px, padding 12px 16px, border-radius 8px.
+
+8. **Badges and small controls use 6px border-radius, tight padding (4px 8px), and secondary blue `#0A84FF` color with 0.2 opacity background.**
+
+9. **Responsive breakpoints:** Mobile ≤479px (single column, 16px padding), Tablet 480–767px (2 columns, 24px padding), Desktop 768px+ (3 columns, 32–40px padding). Font scales: H1 80px→48px→36px, body 20px→18px→16px.
+
+10. **Semantic colors (green, amber, red) are used exclusively for status indication** (success, warning, error). Primary brand color is the blue family (#0A84FF, #64D2FF, #0077ED).
+
+11. **Every interactive element has a minimum 44px touch target height and 8px spacing to adjacent targets.** Buttons, form controls, and links must be easily tappable.
+
+12. **Shadows are soft and subtle.** Standard is `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`; elevated is layered with blue glow. Never use harsh/high-opacity shadows.# Design System Inspired by Captist
+
+## 1. Visual Theme & Atmosphere
+
+Captist embodies a modern, technology-forward aesthetic that combines bold digital energy with refined restraint. The design system prioritizes clarity and sophistication through a dark-first approach, leveraging a vibrant electric blue accent system against carefully controlled neutral surfaces. The visual personality conveys innovation, reliability, and creative potential—perfect for a tool that transforms mundane screen recordings into cinematic experiences. Heavy reliance on luminous blues (#0A84FF, #64D2FF) creates a sense of dynamic motion and cutting-edge capability, while the dark neutral foundation ensures content remains the focal point. Rounded, generous corner radii and subtle gradient effects soften the technical nature, making complex automation feel intuitive and accessible.
+
+**Key Characteristics**
+- Dark-first color strategy with dynamic blue accents
+- Premium use of white space and geometric restraint
+- Rounded, approachable component corners (24px–999px radius)
+- Subtle layering via low-opacity surface overlays
+- Cinematic, motion-forward visual language
+- High contrast for accessibility and emphasis
+- Modern sans-serif typography (Inter primary)
+- Minimal shadow work paired with selective glow effects
+
+## 2. Color Palette & Roles
+
+### Primary
+
+- **Electric Blue** (`#0A84FF`): Primary call-to-action buttons, interactive states, links, and brand accent. Dominates UI focus and conveys digital energy.
+- **Sky Blue** (`#64D2FF`): Secondary interactive element, hover states, and accent highlights. Lighter and more approachable than primary.
+- **Deep Blue** (`#0077ED`): Alternative primary for specific high-contrast contexts where #0A84FF requires reinforcement.
+
+### Accent Colors
+
+- **Light Periwinkle** (`#9DC2FE`): Soft accent for supplementary UI elements, low-emphasis highlights.
+- **Lavender** (`#9E9EFF`): Decorative accent; used sparingly for visual interest in non-critical elements.
+- **Warm Amber** (`#FFCF8A`): Tertiary accent for feature highlights or special callouts.
+- **Purple** (`#BF5AF2`): Accent color for alternative states or category distinction.
+
+### Interactive
+
+- **Light Cyan** (`#64D2FF`): Hover and active states on primary elements.
+- **Deep Blue** (`#0077ED`): Pressed/focus state reinforcement.
+
+### Neutral Scale
+
+- **Pure White** (`#FFFFFF`): Primary text on dark backgrounds, primary content surface fill.
+- **Light Lavender** (`#EBEBF5`): Secondary text, neutral hover states, subtle backgrounds.
+- **Medium Gray** (`#CCCCCC`): Tertiary text, disabled states, borders on light surfaces.
+- **Near Black** (`#141416`): Dark surface backgrounds, alternative dark theme anchor.
+- **Soft Black** (`#1C1C1E`): Deep dark surface fill, premium dark context.
+- **Charcoal** (`#2C2C2E`): Darkest neutral; reserved for specific overlay or emphasis contexts.
+- **Pure Black** (`#000000`): Stark contrast, overlays, shadows.
+
+### Surface & Borders
+
+- **Glass White** (`rgba(255, 255, 255, 0.08)`): Card and container backgrounds; semi-transparent surface.
+- **Glass Border** (`rgba(255, 255, 255, 0.1)`): Subtle border for cards and containers.
+- **Disabled Text** (`rgba(255, 255, 255, 0.6)`): Low-emphasis navigation and secondary button text.
+- **Muted Link** (`rgba(235, 235, 245, 0.6)`): Subdued link and tertiary text color.
+
+### Semantic / Status
+
+- **Success** (`#28C840`): Positive completion states, confirmations.
+- **Warning** (`#FF9F0A`): Alert and caution states; primary warning color.
+- **Warning Alt** (`#FEBC2E`): Secondary warning highlight.
+- **Error** (`#FF453A`): Destructive actions, error states, critical alerts.
+
+### Shadow Colors
+
+- **Soft Shadow** (`rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`): Subtle depth on cards and small containers.
+- **Blue Glow** (`rgba(10, 132, 255, 0.1) 0px 0px 60px 0px`): Ambient glow from primary blue accent.
+- **Ambient Shadow** (`rgba(0, 0, 0, 0.3) 0px 8px 32px 0px`): Medium elevation shadow.
+
+## 3. Typography Rules
+
+### Font Family
+
+**Primary:** Inter (font-family: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`)
+**Secondary:** Arial (font-family: `Arial, sans-serif`) — reserved for UI controls and system labels
+**Fallback Stack:** `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif`
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display (H1) | Inter | 80px | 700 | 84px | 0px | Page hero headlines; use sparingly |
+| Heading 1 (H2) | Inter | 48px | 700 | 57.6px | 0px | Major section headings |
+| Heading 2 (H3) | Inter | 16px | 600 | 25.6px | 0px | Card titles, subsections |
+| Heading 3 (H4) | Inter | 13px | 600 | 20.8px | 0px | Small headings, labels |
+| Body | Inter | 20px | 400 | 30px | 0px | Main content paragraphs |
+| Body Small | Inter | 16px | 400 | 25.6px | 0px | Secondary content, descriptions |
+| Body Micro | Inter | 15px | 400 | 24px | 0px | List items, fine print |
+| Link | Inter | 16px | 400 | 25.6px | 0px | Navigation links, inline actions |
+| Link Small | Inter | 14px | 500 | 22.4px | 0px | Secondary, tertiary links |
+| Button | Arial | 12px | 600 | normal | 0px | Primary and secondary buttons |
+| Button Large | Inter | 15px | 600 | 24px | 0px | Large call-to-action buttons |
+| UI Label | Arial | 13.33px | 400 | normal | 0px | System labels, breadcrumbs |
+
+### Principles
+
+- **Clarity First:** Inter's clean letterforms ensure legibility at all sizes; weight progression (400 → 600 → 700) creates clear visual hierarchy.
+- **Contrast Hierarchy:** Use 80px display weight sparingly; rely on 48px and 16px for most layouts.
+- **Responsive Scaling:** Body text remains 20px on desktop; reduce to 16px on tablets, 15px on mobile.
+- **Line Height Breathing:** Generous line heights (1.2–1.5x) reduce cognitive load and enhance readability on dark backgrounds.
+- **Weight Over Size:** Prefer 600/700 weights and 20px base size over excessive font sizing.
+- **Arial for UI:** UI controls, labels, and system text use Arial for consistency with browser defaults.
+
+## 4. Component Stylings
+
+### Buttons
+
+#### Primary Button (Large CTA)
+- **Background:** `#0A84FF`
+- **Text Color:** `#FFFFFF`
+- **Font:** Inter, 15px, weight 600
+- **Padding:** 12px 24px
+- **Border Radius:** 999px (fully rounded)
+- **Border:** none
+- **Box Shadow:** `rgba(10, 132, 255, 0.15) 0px 0px 20px 0px` (blue glow)
+- **Height:** 48px
+- **Line Height:** 24px
+- **Hover State:** Background `#0077ED`, shadow intensifies to `rgba(10, 132, 255, 0.25) 0px 0px 30px 0px`
+- **Active State:** Background `#0055BB`, shadow `rgba(10, 132, 255, 0.1) 0px 0px 15px 0px`
+- **Disabled State:** Background `rgba(10, 132, 255, 0.5)`, cursor `not-allowed`, text opacity `0.6`
+
+#### Secondary Button (Outlined)
+- **Background:** transparent
+- **Text Color:** `#FFFFFF` at full opacity
+- **Font:** Arial, 12px, weight 600
+- **Padding:** 6px 12px
+- **Border Radius:** 6px
+- **Border:** 1px solid `rgba(255, 255, 255, 0.2)`
+- **Box Shadow:** none
+- **Height:** 29px
+- **Hover State:** Background `rgba(255, 255, 255, 0.1)`, border `rgba(255, 255, 255, 0.3)`
+- **Active State:** Background `rgba(255, 255, 255, 0.15)`, border `rgba(255, 255, 255, 0.4)`
+
+#### Tertiary Button (Ghost)
+- **Background:** transparent
+- **Text Color:** `rgba(255, 255, 255, 0.6)`
+- **Font:** Arial, 12px, weight 600
+- **Padding:** 6px 12px
+- **Border Radius:** 6px
+- **Border:** 1px solid `rgba(255, 255, 255, 0.2)` (very faint)
+- **Box Shadow:** none
+- **Height:** 29px
+- **Hover State:** Text color `#FFFFFF`, border `rgba(255, 255, 255, 0.3)`, background `rgba(255, 255, 255, 0.05)`
+- **Active State:** Background `rgba(255, 255, 255, 0.1)`, text `#FFFFFF`
+
+#### Icon Button (Square)
+- **Background:** transparent
+- **Text Color:** `#FFFFFF`
+- **Font:** Arial, 13.33px, weight 400
+- **Padding:** 8px
+- **Border Radius:** 0px (square corners)
+- **Border:** none
+- **Box Shadow:** none
+- **Width/Height:** 40px
+- **Hover State:** Background `rgba(255, 255, 255, 0.1)`, text `#64D2FF`
+- **Active State:** Background `rgba(10, 132, 255, 0.15)`, text `#64D2FF`
+
+#### Pill Badge (Small)
+- **Background:** `rgba(10, 132, 255, 0.2)`
+- **Text Color:** `#0A84FF`
+- **Font:** Arial, 14px, weight 600
+- **Padding:** 4px 8px
+- **Border Radius:** 6px
+- **Border:** 1px solid `rgba(10, 132, 255, 0.3)`
+- **Box Shadow:** none
+- **Height:** 27px
+- **Hover State:** Background `rgba(10, 132, 255, 0.3)`, border `rgba(10, 132, 255, 0.5)`
+
+### Cards & Containers
+
+#### Standard Card
+- **Background:** `rgba(255, 255, 255, 0.08)` (frosted glass)
+- **Text Color:** `#FFFFFF`
+- **Font:** Inter, 16px, weight 400
+- **Padding:** 24px
+- **Border Radius:** 24px
+- **Border:** 1px solid `rgba(255, 255, 255, 0.1)`
+- **Box Shadow:** `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px` (subtle depth)
+- **Line Height:** 25.6px
+- **Hover State:** Background `rgba(255, 255, 255, 0.12)`, border `rgba(255, 255, 255, 0.15)`
+- **Variant (Elevated):** Box Shadow `rgba(10, 132, 255, 0.1) 0px 0px 60px 0px, rgba(0, 0, 0, 0.5) 0px 20px 60px -15px`
+
+#### Feature Card (with Icon)
+- **Background:** `rgba(255, 255, 255, 0.08)`
+- **Text Color:** `#FFFFFF`
+- **Padding:** 24px
+- **Border Radius:** 24px
+- **Border:** 1px solid `rgba(255, 255, 255, 0.1)`
+- **Icon Color:** `#0A84FF` or gradient (`#64D2FF` to `#0A84FF`)
+- **Icon Size:** 40px × 40px
+- **Title Font:** Inter, 16px, weight 600
+- **Body Font:** Inter, 15px, weight 400, color `rgba(255, 255, 255, 0.8)`
+
+### Inputs & Forms
+
+#### Text Input
+- **Background:** `rgba(255, 255, 255, 0.05)`
+- **Text Color:** `#FFFFFF`
+- **Placeholder Color:** `rgba(255, 255, 255, 0.4)`
+- **Font:** Inter, 16px, weight 400
+- **Padding:** 12px 16px
+- **Border Radius:** 8px
+- **Border:** 1px solid `rgba(255, 255, 255, 0.1)`
+- **Box Shadow:** none
+- **Height:** 44px
+- **Focus State:** Border `rgba(10, 132, 255, 0.5)`, background `rgba(255, 255, 255, 0.08)`, box-shadow `rgba(10, 132, 255, 0.2) 0px 0px 12px 0px`
+- **Error State:** Border `#FF453A`, background `rgba(255, 69, 58, 0.05)`
+
+#### Form Label
+- **Color:** `#FFFFFF`
+- **Font:** Inter, 14px, weight 600
+- **Margin Bottom:** 8px
+- **Line Height:** 20px
+
+#### Checkbox / Radio
+- **Unchecked Background:** `rgba(255, 255, 255, 0.1)`
+- **Checked Background:** `#0A84FF`
+- **Border:** 1px solid `rgba(255, 255, 255, 0.2)` (unchecked) / `#0A84FF` (checked)
+- **Size:** 20px × 20px
+- **Border Radius:** 4px (checkbox) / 50% (radio)
+- **Checked Icon Color:** `#FFFFFF`
+
+### Navigation
+
+#### Header Navigation
+- **Background:** transparent or `rgba(0, 0, 0, 0.4)` on scroll
+- **Text Color:** `#FFFFFF`
+- **Font:** Inter, 16px, weight 400
+- **Padding:** 16px 24px
+- **Height:** 64px (including padding)
+- **Link Hover State:** Text `#64D2FF`, underline `1px solid #64D2FF`
+- **Active Link:** Text `#0A84FF`, underline `2px solid #0A84FF`
+
+#### Navigation Link
+- **Color:** `#FFFFFF`
+- **Font:** Inter, 16px, weight 400
+- **Hover State:** Color `#64D2FF`, underline appears
+- **Active State:** Color `#0A84FF`, underline `2px solid #0A84FF`
+
+#### Secondary Navigation
+- **Color:** `rgba(235, 235, 245, 0.6)`
+- **Font:** Inter, 14px, weight 500
+- **Hover State:** Color `#FFFFFF`, opacity `1.0`
+- **Active State:** Color `#0A84FF`
+
+#### Language Selector Badge
+- **Background:** `#0A84FF`
+- **Text Color:** `#FFFFFF`
+- **Font:** Arial, 12px, weight 600
+- **Padding:** 6px 12px
+- **Border Radius:** 6px
+- **Height:** 29px
+- **Hover State:** Background `#0077ED`
+
+## 5. Layout Principles
+
+### Spacing System
+
+**Base Unit:** 4px
+
+**Spacing Scale:**
+- **4px:** Micro spacing (internal button gaps, tight component alignment)
+- **8px:** Extra-small (button gaps, tight form fields)
+- **12px:** Small (form padding, compact sections)
+- **16px:** Base (standard gaps between elements, form field horizontal padding)
+- **20px:** Medium (section gaps, component-to-component spacing)
+- **24px:** Card padding, medium margin between sections
+- **28px:** Large margin between feature blocks
+- **32px:** Extra-large section gap
+- **40px:** Large container padding
+- **48px:** Extra-large vertical spacing between major sections
+- **64px:** Hero section vertical spacing
+- **80px:** Maximum top-level section padding
+
+**Usage Context:**
+- **Vertical rhythm:** 20px minimum between paragraphs, 32px between major content sections, 48px between page sections
+- **Horizontal padding:** 24px for cards, 40px for container edges on desktop
+- **Component gaps:** 12px between form inputs, 8px between button groups
+
+### Grid & Container
+
+- **Max Width:** 1200px (desktop container max-width)
+- **Sidebar Width:** 300px (if applicable)
+- **Column Strategy:** Flexible grid; primary column spans 60–70% on desktop, sidebar 30–40%
+- **Gutter:** 32px between columns, 24px between grid items
+- **Mobile Max Width:** 100% with 16px horizontal padding
+- **Tablet Max Width:** 768px with 24px horizontal padding
+
+**Section Patterns:**
+- **Hero Section:** Full viewport height, centered content, 80px vertical padding
+- **Feature Grid:** 3-column on desktop, 2-column on tablet, 1-column on mobile; 32px gap
+- **Card Grid:** Adaptive; typically 2–3 cards per row; 24px gap
+- **Container Padding:** 40px top/bottom, 24px left/right on desktop; 24px all on tablet; 16px all on mobile
+
+### Whitespace Philosophy
+
+Captist prioritizes breathing room and content hierarchy through generous negative space. Large sections (48px–80px) separate major content blocks, allowing the viewer's eye to rest and focus. Internal component spacing (12px–24px) maintains tightness without crowding. The dark background acts as a breathing space itself; white/light content floats atop, creating natural visual separation. Avoid stacking content or reducing spacing below the scale values—whitespace is a design feature, not wasted real estate.
+
+### Border Radius Scale
+
+- **0px:** Icon buttons, strict UI controls
+- **4px:** Small utility buttons, minor badges
+- **6px:** Buttons, secondary containers, form inputs
+- **8px:** Badge containers, small cards
+- **24px:** Standard card radius, primary containers, featured sections
+- **999px:** Fully rounded buttons, large CTAs, pill-style elements (use `border-radius: 999px` or `50%`)
+- **50%:** Perfect circles (avatars, small icons)
+
+## 6. Depth & Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| **Flat (0)** | No shadow, no border | Text, icons, simple UI elements |
+| **Raised (1)** | `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px` | Standard cards, basic containers |
+| **Floating (2)** | `rgba(10, 132, 255, 0.1) 0px 0px 60px 0px, rgba(0, 0, 0, 0.5) 0px 20px 60px -15px` | Featured cards, premium containers, modals |
+| **Focus (3)** | `rgba(10, 132, 255, 0.15) 0px 0px 20px 0px` | Button focus state, interactive hover |
+| **Overlay (4)** | `rgba(0, 0, 0, 0.3) 0px 8px 32px 0px` | Dropdowns, popovers, floating actions |
+
+**Shadow Philosophy:**
+
+Depth is conveyed primarily through color opacity and the blue accent glow rather than aggressive shadows. The approach prioritizes subtlety and sophistication—shadows are soft, offset downward slightly, and blurred generously. The primary blue (`#0A84FF`) ambient glow creates a sense of digital luminosity and interactivity without visual heaviness. Layered shadows (combining multiple offsets and blur radii) create dimensionality without appearing harsh. On dark backgrounds, shadows are rendered with extreme softness (blur 32px+, opacity 0.1–0.5) to avoid dominating the visual field. Interactive elements receive blue glow emphasis to signal availability and state change.
+
+## 7. Do's and Don'ts
+
+### Do
+
+- **Use Inter for all body copy and primary headings.** It ensures clarity and modern aesthetic consistency.
+- **Leverage the blue glow (`#0A84FF` with `rgba(10, 132, 255, 0.15)` shadow).** This is the design system's signature and signals interactivity.
+- **Maintain generous spacing; never collapse whitespace below the 4px base unit multiplied by context.** Whitespace improves legibility and refinement.
+- **Apply the glass morphism surface treatment (`rgba(255, 255, 255, 0.08)` background with `rgba(255, 255, 255, 0.1)` border).** It unifies card and container aesthetics.
+- **Use fully rounded buttons (999px radius) exclusively for primary CTAs.** Reserve 6px–8px radius for secondary and tertiary controls.
+- **Maintain high contrast for accessibility:** Primary text `#FFFFFF` on dark backgrounds, blue accents `#0A84FF` on white/light.
+- **Scale typography through weight progression (400 → 600 → 700) rather than excessive font size increases.** This preserves visual hierarchy and refinement.
+- **Ensure all interactive elements have clear hover states** (color shift, background change, shadow enhancement).
+- **Use semantic colors (green `#28C840`, amber `#FF9F0A`, red `#FF453A`) sparingly and only for status indication.**
+- **Apply consistent padding to all containers:** 24px for cards, 40px for major sections, 12px–16px for form elements.
+
+### Don't
+
+- **Don't use Arial for body copy or headings.** Arial is reserved for UI labels, buttons, and system text only.
+- **Don't create shadows with high opacity or hard blur.** Shadows must be soft, subtle, and rarely exceed `rgba(0, 0, 0, 0.5)`.
+- **Don't collapse button radius to 0px unless mimicking browser defaults.** Captist's identity relies on rounded, approachable corners.
+- **Don't use the primary blue (`#0A84FF`) for non-interactive elements.** Reserve it for buttons, links, and CTAs to maintain focus and hierarchy.
+- **Don't mix more than two accent colors in a single layout section.** Color discipline prevents visual chaos and improves user focus.
+- **Don't reduce spacing below the established scale; this includes gutters, padding, and gaps.** Cramped layouts contradict the design system's breathing-room philosophy.
+- **Don't apply blur effects or transparency excessively.** Use them strategically (glass morphism on cards, semi-transparent overlays on interaction).
+- **Don't change font weight mid-component without semantic reason.** Consistency in weight reduces cognitive load.
+- **Don't forget accessibility:** ensure all text meets WCAG AA contrast ratios (4.5:1 minimum for body text, 3:1 for graphics).
+- **Don't use placeholder or disabled state colors for permanent UI elements.** Semantic colors must convey transient states only.
+
+## 8. Responsive Behavior
+
+### Breakpoints
+
+| Breakpoint Name | Width | Key Changes |
+|-----------------|-------|-------------|
+| **Mobile** | 320px–479px | Single-column layout, 16px padding, 12px gaps, font reduction (body 16px), full-width cards |
+| **Tablet** | 480px–767px | Single-column or 2-column grid, 24px padding, 16px gaps, body 18px, card width 100% |
+| **Desktop** | 768px–1199px | 2–3 column grid, 32px padding, 24px gaps, body 20px (full), max-width 100% |
+| **Large Desktop** | 1200px+ | 3-column grid, 40px padding, 32px gaps, body 20px, max-width 1200px container |
+
+**Responsive Type Scaling:**
+- **H1 (Display):** 80px (desktop) → 48px (tablet) → 36px (mobile)
+- **H2:** 48px (desktop) → 32px (tablet) → 28px (mobile)
+- **H3:** 16px (desktop) → 16px (tablet) → 14px (mobile)
+- **Body:** 20px (desktop) → 18px (tablet) → 16px (mobile)
+- **Body Small:** 16px (desktop) → 15px (tablet) → 14px (mobile)
+
+### Touch Targets
+
+- **Minimum Height:** 44px for all interactive elements (buttons, links, form controls)
+- **Minimum Width:** 44px for buttons and touch targets
+- **Spacing Between Targets:** 8px minimum to prevent accidental activation
+- **Icon Buttons:** 40px × 40px minimum
+- **Text Links:** 44px tall with 8px vertical padding for touch comfort
+
+### Collapsing Strategy
+
+**Desktop to Tablet (1200px → 768px):**
+- 3-column grid collapses to 2-column
+- Padding reduces from 40px to 32px; gaps from 32px to 24px
+- Hero section height remains full viewport; reduce bottom padding
+- Navigation remains horizontal; font size holds at 16px
+
+**Tablet to Mobile (768px → 320px):**
+- 2-column grid collapses to single column; 100% width
+- Padding reduces from 32px to 16px; gaps from 24px to 12px
+- Hero title (H1) reduces from 48px → 36px; body from 18px → 16px
+- Navigation converts to hamburger menu if space constrained
+- Cards stack vertically; width 100% with 16px margin
+- Large buttons reduce padding from 12px 24px → 10px 18px
+- Feature cards stack; icon shifts from left to top if space needed
+
+**Header Behavior:**
+- Desktop: Full navigation visible, 16px horizontal gaps, language selector visible
+- Tablet: Navigation remains visible; font size holds; condense if needed
+- Mobile: Hamburger menu activation around 480px; header height 56px; navigation offscreen or below fold
+
+**Modal and Overlay Behavior:**
+- Desktop: Max width 600px, 40px margin on sides, position center
+- Tablet: Max width 90% of viewport, 24px margin
+- Mobile: 100% width with 12px margin, position bottom-sheet or full-screen
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+
+- **Primary CTA Background:** Electric Blue (`#0A84FF`)
+- **Primary CTA Text:** Pure White (`#FFFFFF`)
+- **Primary CTA Hover:** Deep Blue (`#0077ED`)
+- **Secondary Button Background:** Transparent with border `rgba(255, 255, 255, 0.2)`
+- **Secondary Button Text:** White (`#FFFFFF`)
+- **Card Background:** Glass White (`rgba(255, 255, 255, 0.08)`)
+- **Card Border:** Glass Border (`rgba(255, 255, 255, 0.1)`)
+- **Body Text:** Pure White (`#FFFFFF`)
+- **Secondary Text:** Muted (`rgba(235, 235, 245, 0.6)`)
+- **Link Text:** Light Lavender (`#64D2FF`) on hover / `#FFFFFF` default
+- **Success State:** Green (`#28C840`)
+- **Warning State:** Amber (`#FF9F0A`)
+- **Error State:** Red (`#FF453A`)
+- **Icon Accent:** Electric Blue (`#0A84FF`)
+- **Heading Text:** Pure White (`#FFFFFF`)
+- **Shadow (Subtle):** `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`
+- **Shadow (Elevated):** `rgba(10, 132, 255, 0.1) 0px 0px 60px 0px, rgba(0, 0, 0, 0.5) 0px 20px 60px -15px`
+- **Blue Glow (Interactive):** `rgba(10, 132, 255, 0.15) 0px 0px 20px 0px`
+
+### Iteration Guide
+
+1. **Typography is Inter-first.** Use 80px, 48px, 20px hierarchy; Arial only for UI labels and buttons (12px–13.33px).
+
+2. **Primary CTAs are fully rounded (999px) with electric blue (`#0A84FF`) background, white text, and blue glow shadow (`rgba(10, 132, 255, 0.15) 0px 0px 20px 0px`).** Padding 12px 24px, height 48px.
+
+3. **Cards are glass morphism:** `rgba(255, 255, 255, 0.08)` background, `rgba(255, 255, 255, 0.1)` border, 24px padding, 24px border-radius, soft shadow `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`.
+
+4. **Spacing follows 4px base unit scale.** Minimum vertical gaps: 20px between elements, 32px between sections, 48px between major blocks. Padding: 24px for cards, 40px for containers.
+
+5. **Hover states shift blue lighter (`#64D2FF`) and intensify glow.** Secondary buttons gain slight background opacity increase. Links underline.
+
+6. **Dark backgrounds (#141416, #000000) are paired with high-contrast white text (#FFFFFF).** Use opacity reductions (0.6–0.8) for secondary/disabled states.
+
+7. **Form inputs have `rgba(255, 255, 255, 0.05)` background, `rgba(255, 255, 255, 0.1)` border, focus state adds blue glow and `rgba(255, 255, 255, 0.08)` background.** Height 44px, padding 12px 16px, border-radius 8px.
+
+8. **Badges and small controls use 6px border-radius, tight padding (4px 8px), and secondary blue `#0A84FF` color with 0.2 opacity background.**
+
+9. **Responsive breakpoints:** Mobile ≤479px (single column, 16px padding), Tablet 480–767px (2 columns, 24px padding), Desktop 768px+ (3 columns, 32–40px padding). Font scales: H1 80px→48px→36px, body 20px→18px→16px.
+
+10. **Semantic colors (green, amber, red) are used exclusively for status indication** (success, warning, error). Primary brand color is the blue family (#0A84FF, #64D2FF, #0077ED).
+
+11. **Every interactive element has a minimum 44px touch target height and 8px spacing to adjacent targets.** Buttons, form controls, and links must be easily tappable.
+
+12. **Shadows are soft and subtle.** Standard is `rgba(0, 0, 0, 0.5) 0px 8px 32px -8px`; elevated is layered with blue glow. Never use harsh/high-opacity shadows.

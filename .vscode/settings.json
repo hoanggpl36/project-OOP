@@ -1,9 +1,12 @@
 {
     "git.ignoreLimitWarning": true,
-    "java.project.sourcePaths": ["open/src"],
+    "java.project.sourcePaths": [
+        "open/src"
+    ],
     "java.project.outputPath": "open/bin",
     "java.project.referencedLibraries": [
         "open/lib/**/*.jar"
     ],
-    "python.defaultInterpreterPath": "C:\\Users\\hoang\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+    "python.defaultInterpreterPath": "C:\\Users\\hoang\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

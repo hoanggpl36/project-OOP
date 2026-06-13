@@ -3,10 +3,8 @@ package com.hlu;
 import com.hlu.crawler.*;
 import com.hlu.model.SocialPost;
 import com.hlu.analyzer.*;
-import com.hlu.api.ApiClient;
 import com.hlu.ui.MainDashboard;
 import com.hlu.ui.DashboardController;
-import com.hlu.preprocessing.DataPreprocessor;
 
 import javax.swing.*;
 import java.util.*;
@@ -16,15 +14,27 @@ public class MainApp {
     public static void main(String[] args) {
         // Cấu hình giao diện FlatLaf hiện đại
         try {
-            com.formdev.flatlaf.FlatLightLaf.setup();
+            com.formdev.flatlaf.FlatDarkLaf.setup();
         } catch (Exception e) {
             System.out.println("Không khởi tạo được FlatLaf: " + e.getMessage());
         }
 
         System.out.println("1. Đang thu thập dữ liệu từ file CSV gốc...");
-        // Sử dụng Factory Pattern để tạo fetcher
-        IDataFetcher fetcher = DataFetcherFactory.getFetcher("CSV", 
-                "C:\\Users\\hoang\\Desktop\\HeThongBaoLu\\.vscode\\oop_project\\final_data.csv");
+        String csvPath = "C:\\Users\\hoang\\Desktop\\HeThongBaoLu\\.vscode\\oop_project\\final_data.csv";
+        java.io.File csvFile = new java.io.File(csvPath);
+        if (!csvFile.exists()) {
+            java.io.File relativeFallback = new java.io.File("../.vscode/oop_project/final_data.csv");
+            if (relativeFallback.exists()) {
+                csvPath = relativeFallback.getAbsolutePath();
+            } else {
+                java.io.File adminFallback = new java.io.File(
+                        "c:\\Users\\ADMIN\\project-OOP\\.vscode\\oop_project\\final_data.csv");
+                if (adminFallback.exists()) {
+                    csvPath = adminFallback.getAbsolutePath();
+                }
+            }
+        }
+        IDataFetcher fetcher = DataFetcherFactory.getFetcher("CSV", csvPath);
 
         Calendar cal = Calendar.getInstance();
         Date to = cal.getTime();
